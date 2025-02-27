@@ -1,4 +1,6 @@
-package com.redis.toy.dto;
+package com.redis.toy.api.dto;
+
+import java.io.Serializable;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +11,13 @@ import lombok.Setter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Url {
+	/*
+		Redis stores data as strings, so objects need to be converted to a string format
+		(serialized) when storing and back to objects
+		(deserialized) when retrieving
+		--> 저장하고자하는 클래스에 implements Serializable을 붙혀야 함
+	*/
+public class Url implements Serializable {
 	private String urlName;
 	private String originalUrl;
 	private String shortUrl;

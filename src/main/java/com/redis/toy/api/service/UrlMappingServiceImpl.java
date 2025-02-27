@@ -1,14 +1,15 @@
-package com.redis.toy.service;
+package com.redis.toy.api.service;
 
 import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import com.redis.toy.Util.Base62Util;
-import com.redis.toy.dao.UrlMappingRepository;
-import com.redis.toy.dto.Url;
-import com.redis.toy.model.UrlModel;
+import com.redis.toy.api.Util.Base62Util;
+import com.redis.toy.api.dao.UrlMappingRepository;
+import com.redis.toy.api.dto.Url;
+import com.redis.toy.api.model.UrlModel;
 
 @Service("UrlServiceImpl")
 public class UrlMappingServiceImpl implements UrlMappingService {
@@ -23,7 +24,14 @@ public class UrlMappingServiceImpl implements UrlMappingService {
 		this.base62Util = base62Util;
 	}
 
+	/*
+		value는 쉽게 말해서 redis의 table이라고 생각하면 됨,
+		key는 이제 진짜 그 테이블에 들어갈 키! -> 보통 argument 중에서 선택하고 조합할 수도 있음 스프링 문법으로 #{argument}해서 참조
+		value는 이 함수에서 리턴하는 객체가 들어감
+	*/
+
 	@Override
+	@Cacheable(value = "originalUrl", key = "#shortUrl")
 	public Url getOriginalUrl(String shortUrl){
 		// base 64 변환
 		int seq = base62Util.decode(shortUrl);

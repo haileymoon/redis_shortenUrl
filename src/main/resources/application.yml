@@ -12,3 +12,10 @@ spring:
       hibernate:
         format_sql: true
         show_sql: true
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+#      connection 타임아웃 설정
+      timeout: 2000

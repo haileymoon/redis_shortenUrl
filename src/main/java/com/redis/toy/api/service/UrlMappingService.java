@@ -1,6 +1,6 @@
-package com.redis.toy.service;
+package com.redis.toy.api.service;
 
-import com.redis.toy.dto.Url;
+import com.redis.toy.api.dto.Url;
 
 
 public interface UrlMappingService {

@@ -1,4 +1,4 @@
-package com.redis.toy.Util;
+package com.redis.toy.api.Util;
 
 import org.springframework.stereotype.Component;
 

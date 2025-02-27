@@ -1,4 +1,4 @@
-package com.redis.toy.model;
+package com.redis.toy.api.model;
 
 import java.time.LocalDateTime;
 
