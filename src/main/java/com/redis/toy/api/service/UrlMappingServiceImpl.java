@@ -24,12 +24,6 @@ public class UrlMappingServiceImpl implements UrlMappingService {
 		this.base62Util = base62Util;
 	}
 
-	/*
-		value는 쉽게 말해서 redis의 table이라고 생각하면 됨,
-		key는 이제 진짜 그 테이블에 들어갈 키! -> 보통 argument 중에서 선택하고 조합할 수도 있음 스프링 문법으로 #{argument}해서 참조
-		value는 이 함수에서 리턴하는 객체가 들어감
-	*/
-
 	@Override
 	@Cacheable(value = "originalUrl", key = "#shortUrl")
 	public Url getOriginalUrl(String shortUrl){
@@ -37,17 +31,16 @@ public class UrlMappingServiceImpl implements UrlMappingService {
 		int seq = base62Util.decode(shortUrl);
 		// DB 조회
 		UrlModel urlModel = selectOriginalUrl(seq);
+		if (urlModel == null){
+			return new Url();
+		}
 		return setUrl(urlModel);
 	}
 
 	@Override
 	public Url createShortUrl(Url requestUrl){
 
-		UrlModel urlModel = new UrlModel();
-		urlModel.setUrlName(requestUrl.getUrlName());
-		urlModel.setOriginalUrl(requestUrl.getOriginalUrl());
-		urlModel.setRegId(requestUrl.getRegId());
-		urlModel.setRegDate(LocalDateTime.now());
+		UrlModel urlModel = makeUrlModel(requestUrl);
 
 		// get seq num
 		int seq = saveUrl(urlModel).getSeq();
@@ -57,6 +50,15 @@ public class UrlMappingServiceImpl implements UrlMappingService {
 		urlModel.setShortUrl(shortUrl);
 		urlModel = urlMappingRepository.save(urlModel);
 		return setUrl(urlModel);
+	}
+
+	private static UrlModel makeUrlModel(Url requestUrl) {
+		UrlModel urlModel = new UrlModel();
+		urlModel.setUrlName(requestUrl.getUrlName());
+		urlModel.setOriginalUrl(requestUrl.getOriginalUrl());
+		urlModel.setRegId(requestUrl.getRegId());
+		urlModel.setRegDate(LocalDateTime.now());
+		return urlModel;
 	}
 
 	public Url setUrl(UrlModel urlModel){
