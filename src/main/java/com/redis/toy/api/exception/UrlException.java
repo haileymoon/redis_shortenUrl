@@ -2,7 +2,6 @@ package com.redis.toy.api.exception;
 
 import com.google.gson.JsonObject;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

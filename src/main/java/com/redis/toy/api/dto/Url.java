@@ -1,12 +1,11 @@
 package com.redis.toy.api.dto;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Builder
 @NoArgsConstructor
@@ -24,6 +23,7 @@ public class Url implements Serializable {
 		- 호환성 보장: 만약 클래스 구조를 변경해도 동일한 serialVersionUID를 가지고 있으면 기존 직렬화된 데이터를 정상적으로 역직렬화할 수 있음
 	*/
 
+	@Serial
 	private static final long serialVersionUID = 1L;
 
 	private String urlName;
@@ -35,33 +35,15 @@ public class Url implements Serializable {
 		return urlName;
 	}
 
-	public void setUrlName(String urlName) {
-		this.urlName = urlName;
-	}
-
 	public String getOriginalUrl() {
 		return originalUrl;
 	}
 
-	public void setOriginalUrl(String originalUrl) {
-		this.originalUrl = originalUrl;
-	}
-
-	public String getShortUrl() {
-		return shortUrl;
-	}
-
-	public void setShortUrl(String shortUrl) {
-		this.shortUrl = shortUrl;
-	}
 
 	public String getRegId() {
 		return regId;
 	}
 
-	public void setRegId(String regId) {
-		this.regId = regId;
-	}
 }
 
 
