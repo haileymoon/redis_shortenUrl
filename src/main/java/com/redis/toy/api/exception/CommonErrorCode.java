@@ -4,7 +4,7 @@ import lombok.Getter;
 
 @Getter
 public enum CommonErrorCode {
-	OK(200, "SUCESS", 200),
+	OK(200, "SUCCESS", 200),
 	DUPLICATE_DATA(20001, "DUPLICATE URL DATA", 400),
 	NO_DATA(99994, "NO DATA", 500),
 	;

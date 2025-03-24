@@ -8,6 +8,5 @@ import com.redis.toy.api.model.UrlModel;
 
 @Repository
 public interface UrlMappingRepository extends JpaRepository<UrlModel, Integer> {
-	UrlModel findBySeq(int seq);
 	List<UrlModel> findByShortUrl(String shortUrl);
 }
