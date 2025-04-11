@@ -5,17 +5,7 @@ title: error docs
 
 This document will walk you through the error handling mechanism in the <SwmToken path="/src/main/java/com/redis/toy/api/exception/CouponCommon.java" pos="5:4:4" line-data="public enum CouponCommon {">`CouponCommon`</SwmToken> enum class. The purpose of this class is to define a comprehensive set of error codes and messages that can be used throughout the application to handle various error scenarios related to coupon operations.
 
-We will cover:
-
-1. Why error codes are grouped by similarity.
-2. How specific error codes are defined for different scenarios.
-3. The importance of having detailed error messages for user feedback.
-
-# Grouping error codes by similarity
-
-Grouping error codes by similarity allows for easier management and understanding of the types of errors that can occur. It helps developers quickly identify related errors and ensures consistency in error handling across the application.
-
-The <SwmToken path="/src/main/java/com/redis/toy/api/exception/CouponCommon.java" pos="5:4:4" line-data="public enum CouponCommon {">`CouponCommon`</SwmToken> enum class is structured to group error codes based on their context, such as parameter validation, data availability, coupon restrictions, and access limitations.
+&nbsp;
 
 # Parameter validation errors
 
