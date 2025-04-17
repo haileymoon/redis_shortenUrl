@@ -6,7 +6,6 @@ import java.net.URISyntaxException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -19,6 +18,7 @@ import com.redis.toy.api.exception.UrlException;
 import com.redis.toy.api.service.UrlMappingService;
 
 import io.micrometer.common.util.StringUtils;
+import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/short-url")
@@ -27,13 +27,12 @@ public class UrlMappingController {
 	private final UrlMappingService urlMappingService;
 	private final Logger LOG = LoggerFactory.getLogger(UrlMappingController.class);
 
-	@Autowired
 	public UrlMappingController(@Qualifier("UrlServiceImpl") UrlMappingService urlMappingService){
 		this.urlMappingService = urlMappingService;
 	}
 
 	@GetMapping("")
-	public ResponseEntity<Void> getOriginalUrl(@RequestParam String shortUrl) throws URISyntaxException {
+	public ResponseEntity<Void> getOriginalUrl(HttpServletRequest request, @RequestParam String shortUrl) throws URISyntaxException {
 		String url = urlMappingService.getOriginalUrl(shortUrl);
 		
 		if (StringUtils.isEmpty(url)){
