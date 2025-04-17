@@ -2,7 +2,7 @@ package com.redis.toy.api.model;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
