@@ -3,7 +3,6 @@ package com.redis.toy.api.service;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +12,8 @@ import com.redis.toy.api.dto.Url;
 import com.redis.toy.api.exception.CommonErrorCode;
 import com.redis.toy.api.exception.UrlException;
 import com.redis.toy.api.model.UrlModel;
+import org.apache.commons.lang3.StringUtils;
 
-import io.micrometer.common.util.StringUtils;
 
 @Service("UrlServiceImpl")
 public class UrlMappingServiceImpl implements UrlMappingService {
@@ -24,7 +23,6 @@ public class UrlMappingServiceImpl implements UrlMappingService {
 	private Base62Util base62Util;
 
 	private RedisTemplate<String, String> redisTemplate;
-	@Autowired
 	public UrlMappingServiceImpl(UrlMappingRepository urlMappingRepository, Base62Util base62Util, RedisTemplate<String, String> redisTemplate){
 		this.urlMappingRepository = urlMappingRepository;
 		this.base62Util = base62Util;

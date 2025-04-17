@@ -17,8 +17,8 @@ import com.redis.toy.api.exception.CommonErrorCode;
 import com.redis.toy.api.exception.UrlException;
 import com.redis.toy.api.service.UrlMappingService;
 
-import io.micrometer.common.util.StringUtils;
-import jakarta.servlet.http.HttpServletRequest;
+import org.apache.commons.lang3.StringUtils;
+import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/short-url")
